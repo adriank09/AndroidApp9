@@ -8,37 +8,29 @@
 
     <EditText
         android:id="@+id/etName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:ems="10"
+        android:hint="@string/hint_new_contact_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:hint="@string/hint_new_contact_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginBottom="297dp"
-        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddContact"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/etName" />
+        app:layout_constraintTop_toBottomOf="@+id/etName" />
 
     <Button
         android:id="@+id/btnAddContact"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />

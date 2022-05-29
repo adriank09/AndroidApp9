@@ -39,6 +39,16 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
         Contact c = contacts.get(position);
         holder.tvName.setText(c.getName());
         holder.tvEmail.setText(c.getEmail());
+
+        // Edit button click handler
+        holder.btnEditContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Edit " + c.getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Remove button click handler
         holder.btnRemoveContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +63,7 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
                     // Issue SQL statement.
                     int deletedRows = db.delete(ContactContract.ContactEntry.TABLE_NAME, selection, selectionArgs);
 
-                    Toast.makeText(holder.itemView.getContext(), "Removed " + c.getName() + ", deletedRows: " + deletedRows, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Removed " + c.getName() + ", deletedRows: " + deletedRows, Toast.LENGTH_SHORT).show();
                     activity.loadContacts();
                 }
                 // Toast.makeText(holder.itemView.getContext(), "Remove " + c.getName(), Toast.LENGTH_SHORT).show();
@@ -70,6 +80,7 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
         private TextView tvName;
         private TextView tvEmail;
         private Button btnRemoveContact;
+        private Button btnEditContact;
 
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +88,7 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
             tvName = itemView.findViewById(R.id.tvName);
             tvEmail = itemView.findViewById(R.id.tvEmail);
             btnRemoveContact = itemView.findViewById(R.id.btnDeleteContact);
+            btnEditContact = itemView.findViewById(R.id.btnEditContact);
         }
     }
 }

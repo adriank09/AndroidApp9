@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_create_new_contact.xml" value="0.24365942028985507" />
+        <entry key="app/src/main/res/layout/activity_create_new_contact.xml" value="0.34119567871093753" />
+        <entry key="app/src/main/res/layout/activity_edit_contact.xml" value="0.10866261398176291" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22056159420289856" />
-        <entry key="app/src/main/res/layout/contact_item_detail.xml" value="0.2286365085177951" />
+        <entry key="app/src/main/res/layout/contact_item_detail.xml" value="0.335" />
       </map>
     </option>
   </component>
