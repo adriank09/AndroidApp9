@@ -18,6 +18,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SQLiteDatabase db;
+
+    protected SQLiteDatabase getDb() {
+        return db;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +38,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        loadContacts();
+    }
+
+    protected void loadContacts() {
         SQLiteOpenHelper dbHelper = new ContactContract.ContactDbHelper(this);
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        if (db == null) {
+            db = dbHelper.getReadableDatabase();
+        }
 
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
@@ -83,5 +95,17 @@ public class MainActivity extends AppCompatActivity {
 
         rvContacts.setAdapter(viewAdapter);
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadContacts();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
     }
 }

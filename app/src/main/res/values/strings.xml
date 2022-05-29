@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">App9</string>
+    <string name="button_remove_contact">Remove</string>
 </resources>
