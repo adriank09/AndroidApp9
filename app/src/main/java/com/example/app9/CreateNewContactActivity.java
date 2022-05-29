@@ -48,8 +48,14 @@ public class CreateNewContactActivity extends AppCompatActivity {
                 // Insert the new row, returning the primary key value of the new row
                 long newRowId = db.insert(ContactContract.ContactEntry.TABLE_NAME, null, values);
 
-                // Show the newRowId
-                Toast.makeText(view.getContext(), "newRowId: " + newRowId, Toast.LENGTH_SHORT).show();
+                // If new contact was added to db successfully, we close and return to previous activity.
+                if (newRowId > 0) {
+                    finish();
+                }
+                // If not, we show an error
+                else {
+                    Toast.makeText(view.getContext(), "Error while adding new contact. newRowId: " + newRowId, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
