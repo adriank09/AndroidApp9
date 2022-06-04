@@ -3,4 +3,5 @@
     <string name="button_remove_contact">Remove</string>
     <string name="hint_new_contact_name">Name</string>
     <string name="button_add_new_contact">Add new contact</string>
+    <string name="btn_edit_update_contact">Update</string>
 </resources>

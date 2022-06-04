@@ -1,7 +1,9 @@
 package com.example.app9;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +46,17 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
         holder.btnEditContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Edit " + c.getName(), Toast.LENGTH_SHORT).show();
+                if (context instanceof MainActivity) {
+                    Intent intent = new Intent(view.getContext(), EditContactActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("editContact", c);
+                    intent.putExtra("editContextExtra", bundle);
+
+                    MainActivity activity = (MainActivity) context;
+                    activity.startActivity(intent);
+                }
+
+                //Toast.makeText(view.getContext(), "Edit " + c.getName(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -54,7 +66,7 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
             public void onClick(View view) {
                 if (context instanceof MainActivity) {
                     MainActivity activity = (MainActivity) context;
-                    SQLiteDatabase db = activity.getDb();
+                    SQLiteDatabase db = activity.getDbReadable();
 
                     // Define 'where' part of query.
                     String selection = ContactContract.ContactEntry._ID + " LIKE ?";

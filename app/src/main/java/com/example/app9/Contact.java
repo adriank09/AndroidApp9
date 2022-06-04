@@ -1,6 +1,8 @@
 package com.example.app9;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
     private long id;
     private String name;
     private String email;

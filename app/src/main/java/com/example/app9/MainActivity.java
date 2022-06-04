@@ -14,14 +14,13 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SQLiteDatabase db;
+    private SQLiteDatabase dbReadable;
 
-    protected SQLiteDatabase getDb() {
-        return db;
+    protected SQLiteDatabase getDbReadable() {
+        return dbReadable;
     }
 
     @Override
@@ -43,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     protected void loadContacts() {
         SQLiteOpenHelper dbHelper = new ContactContract.ContactDbHelper(this);
-        if (db == null) {
-            db = dbHelper.getReadableDatabase();
+        if (dbReadable == null) {
+            dbReadable = dbHelper.getReadableDatabase();
         }
 
         // Define a projection that specifies which columns from the database
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         String sortOrder =
                 ContactContract.ContactEntry.COLUMN_NAME_NAME + " DESC";
 
-        Cursor cursor = db.query(
+        Cursor cursor = dbReadable.query(
                 ContactContract.ContactEntry.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
                 null/*selection*/,              // The columns for the WHERE clause
@@ -106,6 +105,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        db.close();
+        dbReadable.close();
     }
 }
